@@ -1,0 +1,109 @@
+redis:
+  redisDbName: 4
+  redisHost: 127.0.0.1
+  redisPort: 6379
+  redisPassword: 123456
+  redisNetwork: "tcp"
+
+etcd:
+  address: 127.0.0.1:3379
+
+services:
+  gateway:
+    name: gateway
+    loadBalance: true
+    addr:
+      - 127.0.0.1:20001
+    metrics:
+      - 127.0.0.1:30001
+
+  user:
+    name: user
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20002
+    metrics:
+      - 127.0.0.1:30002
+
+  favorite:
+    name: favorite
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20003
+    metrics:
+      - 127.0.0.1:30003
+
+  search_engine:
+    name: search_engine
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20004
+    metrics:
+      - 127.0.0.1:30004
+
+  index_platform:
+    name: index_platform
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20005
+    metrics:
+      - 127.0.0.1:30005
+
+  mapreduce:
+    name: mapreduce
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20006
+    metrics:
+      - 127.0.0.1:30006
+
+  search_vector:
+    name: search_vector
+    loadBalance: false
+    addr:
+      - 127.0.0.1:20007
+    metrics:
+      - 127.0.0.1:30007
+
+starrocks:
+  username: root
+  password:
+  database: test
+  load_url: localhost:8083
+  host: localhost
+  port: 9030
+  charset: utf8mb4
+
+kafka:
+  address:
+    - 127.0.0.1:10000
+    - 127.0.0.1:10001
+    - 127.0.0.1:10002
+
+domain:
+  user:
+    name: user
+  favorite:
+    name: favorite
+  search_engine:
+    name: search_engine
+  index_platform:
+    name: index_platform
+  mapreduce:
+    name: mapreduce
+  search_vector:
+    name: search_vector
+
+model:
+    network: app/search_vector/weights/gl18-tl-resnet50-gem-w-83fdc30.pth
+    sentence_transformer: uer/sbert-base-chinese-nli
+
+milvus:
+    host: 127.0.0.1
+    port: 19530
+    vector_dimension: 768
+    default_milvus_table_name: milvus_table_name
+    metric_type: L2
+    timeout: 3
+jaeger:
+    addr: 127.0.0.1:4317
